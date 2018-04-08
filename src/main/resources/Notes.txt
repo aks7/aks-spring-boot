@@ -1,0 +1,63 @@
+mvn install:install-file -Dfile={C:\Users\ojdbc7.jar} -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0 -Dpackaging=jar
+
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_emp_details`( 
+  IN in_emp_id INTEGER, 
+  OUT out_emp_name VARCHAR(30), 
+  OUT out_emp_mob_no VARCHAR(10), 
+  OUT out_emp_dept VARCHAR(15))
+BEGIN 
+  SELECT emp_name, emp_mob_no, emp_dept 
+  INTO out_emp_name, out_emp_mob_no, out_emp_dept 
+  FROM employee where emp_id = in_emp_id;
+END
+
+$$$$$$$$$$$$$$$$$$$
+
+create or replace procedure "GET_EMP_DETAILS"    
+(emp_id IN NUMBER,    
+name IN VARCHAR2)    
+is    
+begin    
+insert into user values(id,name);    
+end;    
+########################################################
+
+CREATE OR REPLACE PROCEDURE GET_EMP_DETAILS
+( 
+   in_emp_id IN EMPLOYEE.EMP_ID%TYPE, 
+   out_emp_name OUT EMPLOYEE.EMP_NAME%TYPE, 
+   out_emp_mob_no OUT EMPLOYEE.EMP_MOB_NO%TYPE, 
+   out_emp_dept OUT EMPLOYEE.EMP_DEPT%TYPE
+   )
+  
+IS   
+BEGIN
+    SELECT emp_name, emp_mob_no, emp_dept 
+  INTO out_emp_name, out_emp_mob_no, out_emp_dept 
+  FROM employee where emp_id = in_emp_id;
+END;
+
+#######################################################
+
+CREATE OR REPLACE PROCEDURE GET_EMP_DETAILS1
+( 
+   emp_object IN EMP, 
+   out_emp_name OUT EMPLOYEE.EMP_NAME%TYPE, 
+   out_emp_mob_no OUT EMPLOYEE.EMP_MOB_NO%TYPE, 
+   out_emp_dept OUT EMPLOYEE.EMP_DEPT%TYPE
+   )
+  
+AS
+BEGIN
+DECLARE
+       emp_id1 NUMBER(10) := emp_object.emp_id;
+BEGIN
+   
+    
+    SELECT emp_name, emp_mob_no, emp_dept 
+  INTO out_emp_name, out_emp_mob_no, out_emp_dept 
+  FROM employee where emp_id = emp_id1;
+END;
+END;
